@@ -12,5 +12,8 @@ const apiClient = axios.create({
 export default {
   getPassengers(page, size) {
     return apiClient.get('/passenger?page=' + page + '&size=' + size)
+  },
+  getPassenger(id) {
+    return apiClient.get('/passenger/' + id)
   }
 }

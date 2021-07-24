@@ -1,8 +1,13 @@
 <template>
-    <div class="passenger-card">
-      <span>@{{ passenger.name }} ,Id: {{ passenger._id }}</span>
-      <h4>{{ passenger.trips }}</h4>
-    </div>
+    <router-link 
+        class="passenger-link"
+        :to="{name: 'PassengerDetail', params: {id: passenger._id}}"
+    >
+        <div class="passenger-card">
+            <h4>Name: {{ passenger.name }}</h4>
+            <span>Trips: {{ passenger.trips }}</span>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -29,5 +34,10 @@ export default {
 .passenger-card:hover {
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.passenger-link{
+  color: #2c3e50;
+  text-decoration: none;
 }
 </style>
