@@ -1,7 +1,7 @@
 <template>
     <router-link 
         class="passenger-link"
-        :to="{name: 'PassengerDetail', params: {id: passenger._id}}"
+        :to="{name: 'PassengerDetails', params: {id: passenger._id}}"
     >
         <div class="passenger-card">
             <h4>Name: {{ passenger.name }}</h4>
