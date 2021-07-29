@@ -4,6 +4,7 @@ import About from "../views/About.vue";
 import PassengerLayout from "@/views/passenger/Layout.vue"
 import PassengerDetails from "../views/passenger/Details.vue";
 import PassengerAirlineDetails from "../views/passenger/AirlineDetails.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
         component: PassengerAirlineDetails
       },
     ]
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ];
 
