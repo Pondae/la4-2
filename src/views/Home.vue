@@ -1,6 +1,10 @@
 <template>
   <h1>Total Passengers</h1>
   <div class="passengers">
+    <div v-if="GStore.flashMessageEdit">
+      {{ GStore.flashMessageEdit }}
+    </div>
+    <br>
     <PassengerCard v-for="passenger in passengers" :key="passenger._id" :passenger="passenger" />
   </div>
 </template>
@@ -11,6 +15,7 @@ import PassengerService from '@/services/PassengerService.js'
 import { watchEffect } from '@vue/runtime-core'
 export default {
   name: 'Home',
+  inject: ['GStore'],
   components: {
     PassengerCard
   },
