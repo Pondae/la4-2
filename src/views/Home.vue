@@ -12,7 +12,7 @@
 <script>
 import PassengerCard from '@/components/PassengerCard.vue'
 import PassengerService from '@/services/PassengerService.js'
-import { watchEffect } from '@vue/runtime-core'
+
 export default {
   name: 'Home',
   inject: ['GStore'],
@@ -24,19 +24,8 @@ export default {
       passengers: null,
     }
   },
-  created() {
-    watchEffect(() => {
-    PassengerService.getPassengers(0,10)
-    .then((response) => {
-      this.passengers = response.data.data
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    })
-  },
   beforeRouteEnter(routeTo, routeFrom, next){
-    PassengerService.getPassengers(3, parseInt(routeTo.query.page) || 1)
+    PassengerService.getPassengers(0, parseInt(routeTo.query.page) || 10)
       .then((response) => {
         next((comp) => {
           comp.passengers = response.data.data
@@ -48,7 +37,7 @@ export default {
       })
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
-    PassengerService.getPassengers(3, parseInt(routeTo.query.page) || 1)
+    PassengerService.getPassengers(0, parseInt(routeTo.query.page) || 10)
     .then((response) => {
         this.passengers = response.data.data
         this.totalEvents = response.headers['x=total-count']
