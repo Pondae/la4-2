@@ -34,7 +34,30 @@ export default {
       console.log(error)
     })
     })
-  }
+  },
+  beforeRouteEnter(routeTo, routeFrom, next){
+    PassengerService.getPassengers(3, parseInt(routeTo.query.page) || 1)
+      .then((response) => {
+        next((comp) => {
+          comp.passengers = response.data.data
+          comp.totalEvents = response.headers['x-total-count']
+        })
+      })
+      .catch(() => {
+        next({ name: 'NetworkError' })
+      })
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    PassengerService.getPassengers(3, parseInt(routeTo.query.page) || 1)
+    .then((response) => {
+        this.passengers = response.data.data
+        this.totalEvents = response.headers['x=total-count']
+        next()
+      })
+      .catch(() => {
+        next({ name: 'NetworkError' })
+      })
+  },
 }
 </script>
 <style scoped>
